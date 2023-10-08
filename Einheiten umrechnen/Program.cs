@@ -92,22 +92,22 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitName(quelleT)} entsprechen {resultT} Einheit {GetUnitName(zielT)}");
+            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitNameT(quelleT)} entsprechen {resultT} Einheit {GetUnitNameT(zielT)}");
         }
 
         static void ConvertMassUnits()
         {
             Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Masse:");
-            Console.WriteLine("1. Ton");
-            Console.WriteLine("2. Kilogramm");
-            Console.WriteLine("3. Gramm");
+            Console.WriteLine("1. Kilometer");
+            Console.WriteLine("2. Meter");
+            Console.WriteLine("3. Zentimeter");
 
             int quelleM = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Masse:");
-            Console.WriteLine("1. Ton");
-            Console.WriteLine("2. Kilogramm");
-            Console.WriteLine("3. Gramm");
+            Console.WriteLine("1. Kilometer");
+            Console.WriteLine("2. Meter");
+            Console.WriteLine("3. Zentimeter");
 
             int zielM = int.Parse(Console.ReadLine());
 
@@ -117,27 +117,27 @@ namespace UnitConverter
 
             if (quelleM == 1 && zielM == 2)
             {
-                resultM = TonToKilogram(mass);
+                resultM = KilometerToMeter(mass);
             }
             else if (quelleM == 2 && zielM == 1)
             {
-                resultM = KilogramToTon(mass);
+                resultM = MeterToKilometer(mass);
             }
             else if (quelleM == 1 && zielM == 3)
             {
-                resultM = TonToGram(mass);
+                resultM = KilometerToZentimeter(mass);
             }
             else if (quelleM == 3 && zielM == 1)
             {
-                resultM = GramToTon(mass);
+                resultM = ZentimeterToKilometer(mass);
             }
             else if (quelleM == 2 && zielM == 3)
             {
-                resultM = KilogramToGram(mass);
+                resultM = MeterToZentimeter(mass);
             }
             else if (quelleM == 3 && zielM == 2)
             {
-                resultM = GramToKilogram(mass);
+                resultM = ZentimeterToMeter(mass);
             }
             else
             {
@@ -145,20 +145,22 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitName(quelleM)} entsprechen {resultM} Einheit {GetUnitName(zielM)}");
+            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitNameM(quelleM)} entsprechen {resultM} Einheit {GetUnitNameM(zielM)}");
         }
 
         static void ConvertWeightUnits()
         {
             Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Gewichtseinheit:");
-            Console.WriteLine("1. Pfund");
+            Console.WriteLine("1. Ton");
             Console.WriteLine("2. Kilogramm");
+            Console.WriteLine("3. Gramm");
   
             int quelleG = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Gewichtseinheit:");
-            Console.WriteLine("1. Pfund");
+            Console.WriteLine("1. Ton");
             Console.WriteLine("2. Kilogramm");
+            Console.WriteLine("3. Gramm");
 
             int zielG = int.Parse(Console.ReadLine());
 
@@ -168,34 +170,78 @@ namespace UnitConverter
 
             if (quelleG == 1 && zielG == 2)
             {
-                resultG = PoundsToKilograms(gewicht);
+                resultG = TonToKilogram(gewicht);
             }
             else if (quelleG == 2 && zielG == 1)
             {
-                resultG = KilogramsToPounds(gewicht);
+                resultG = KilogramToTon(gewicht);
+            }
+            else if (quelleG == 1 && zielG == 3)
+            {
+                resultG = TonToGram(gewicht);
+            }
+            else if (quelleG == 3 && zielG == 1)
+            {
+                resultG = GramToTon(gewicht);
+            }
+            else if (quelleG == 2 && zielG == 3)
+            {
+                resultG = KilogramToGram(gewicht);
+            }
+            else if (quelleG == 3 && zielG == 2)
+            {
+                resultG = GramToKilogram(gewicht);
+            }
+            else
+            {
+                Console.WriteLine("Ungültige Auswahl der Einheiten.");
+                return;
             }
           
-            Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitName(quelleG)} entsprechen {resultG} Einheit {GetUnitName(zielG)}");
+            Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitNameG(quelleG)} entsprechen {resultG} Einheit {GetUnitNameG(zielG)}");
         }
 
-        static string GetUnitName(int unit)
+        static string GetUnitNameT(int unit)
+        {
+            switch (unit)
+            {
+                case 1:
+                    return "Celsius";
+                case 2:
+                    return "Fahrenheit";
+                case 3:
+                    return "Kelvin";
+                
+                default:
+                    return "Unbekannt";
+            }
+        }
+        static string GetUnitNameM(int unit) 
+        {
+            switch (unit)
+            {
+                case 1:
+                    return "Kilometer";
+                case 2:
+                    return "Meter";
+                case 3:
+                    return "Zentimeter";
+                
+                default:
+                    return "Unbekannt";
+            }
+        }
+        static string GetUnitNameG(int unit)
         {
             switch (unit)
             {
                 case 1:
                     return "Ton";
                 case 2:
-                    return "Kilogramm";
+                    return "Kilogram";
                 case 3:
-                    return "Gramm";
-                case 4:
-                    return "Celsius";
-                case 5:
-                    return "Fahrenheit";
-                case 6:
-                    return "Kelvin";
-                case 7:
-                    return "Pfund";
+                    return "Gram";
+                
                 default:
                     return "Unbekannt";
             }
@@ -231,6 +277,36 @@ namespace UnitConverter
             return (kelvin - 273.15) * 9 / 5 + 32;
         }
 
+        static double KilometerToMeter(double ton)
+        {
+            return ton * 1000;
+        }
+
+        static double MeterToKilometer(double kilogram)
+        {
+            return kilogram / 1000;
+        }
+
+        static double KilometerToZentimeter(double ton)
+        {
+            return ton * 1_000_000;
+        }
+
+        static double ZentimeterToKilometer(double grams)
+        {
+            return grams / 1_000_000;
+        }
+
+        static double MeterToZentimeter(double kilogram)
+        {
+            return kilogram * 1000;
+        }
+
+        static double ZentimeterToMeter(double grams)
+        {
+            return grams / 1000;
+        }
+
         static double TonToKilogram(double ton)
         {
             return ton * 1000;
@@ -259,16 +335,6 @@ namespace UnitConverter
         static double GramToKilogram(double grams)
         {
             return grams / 1000;
-        }
-
-        static double PoundsToKilograms(double pounds)
-        {
-            return pounds * 0.453592;
-        }
-
-        static double KilogramsToPounds(double kilograms)
-        {
-            return kilograms / 0.453592;
         }
     }
 }
