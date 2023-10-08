@@ -6,7 +6,7 @@ namespace UnitConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Willkommen zum Einheiten-Umrechner!");
+            Console.WriteLine("Einheiten-Umrechner App");
 
             while (true)
             {
@@ -20,7 +20,7 @@ namespace UnitConverter
 
                 if (choice == 4)
                 {
-                    Console.WriteLine("Vielen Dank für die Verwendung des Einheiten-Umrechners. Auf Wiedersehen!");
+                    Console.WriteLine("Vielen Dank.... Auf Wiedersehen ");
                     break;
                 }
 
@@ -44,45 +44,45 @@ namespace UnitConverter
 
         static void ConvertTemperature()
         {
-            Console.WriteLine("\nBitte wählen Sie die Ausgangseinheit der Temperatur:");
+            Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Temperatur:");
             Console.WriteLine("1. Celsius");
             Console.WriteLine("2. Fahrenheit");
             Console.WriteLine("3. Kelvin");
 
-            int sourceUnit = int.Parse(Console.ReadLine());
+            int quelleT = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Temperatur:");
             Console.WriteLine("1. Celsius");
             Console.WriteLine("2. Fahrenheit");
             Console.WriteLine("3. Kelvin");
 
-            int targetUnit = int.Parse(Console.ReadLine());
+            int zielT = int.Parse(Console.ReadLine());
 
             Console.Write("Geben Sie den Temperaturwert ein: ");
             double temperature = double.Parse(Console.ReadLine());
             double result = 0;
 
-            if (sourceUnit == 1 && targetUnit == 2)
+            if (quelleT == 1 && zielT == 2)
             {
                 result = CelsiusToFahrenheit(temperature);
             }
-            else if (sourceUnit == 2 && targetUnit == 1)
+            else if (quelleT == 2 && zielT == 1)
             {
                 result = FahrenheitToCelsius(temperature);
             }
-            else if (sourceUnit == 1 && targetUnit == 3)
+            else if (quelleT == 1 && zielT == 3)
             {
                 result = CelsiusToKelvin(temperature);
             }
-            else if (sourceUnit == 3 && targetUnit == 1)
+            else if (quelleT == 3 && zielT == 1)
             {
                 result = KelvinToCelsius(temperature);
             }
-            else if (sourceUnit == 2 && targetUnit == 3)
+            else if (quelleT == 2 && zielT == 3)
             {
                 result = FahrenheitToKelvin(temperature);
             }
-            else if (sourceUnit == 3 && targetUnit == 2)
+            else if (quelleT == 3 && zielT == 2)
             {
                 result = KelvinToFahrenheit(temperature);
             }
@@ -92,7 +92,7 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitName(sourceUnit)} entsprechen {result} Einheit {GetUnitName(targetUnit)}");
+            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitName(quelleT)} entsprechen {result} Einheit {GetUnitName(zielT)}");
         }
 
         static void ConvertMassUnits()
