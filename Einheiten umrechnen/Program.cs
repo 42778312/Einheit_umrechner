@@ -60,31 +60,31 @@ namespace UnitConverter
 
             Console.Write("Geben Sie den Temperaturwert ein: ");
             double temperature = double.Parse(Console.ReadLine());
-            double result = 0;
+            double resultT = 0;
 
             if (quelleT == 1 && zielT == 2)
             {
-                result = CelsiusToFahrenheit(temperature);
+                resultT = CelsiusToFahrenheit(temperature);
             }
             else if (quelleT == 2 && zielT == 1)
             {
-                result = FahrenheitToCelsius(temperature);
+                resultT = FahrenheitToCelsius(temperature);
             }
             else if (quelleT == 1 && zielT == 3)
             {
-                result = CelsiusToKelvin(temperature);
+                resultT = CelsiusToKelvin(temperature);
             }
             else if (quelleT == 3 && zielT == 1)
             {
-                result = KelvinToCelsius(temperature);
+                resultT = KelvinToCelsius(temperature);
             }
             else if (quelleT == 2 && zielT == 3)
             {
-                result = FahrenheitToKelvin(temperature);
+                resultT = FahrenheitToKelvin(temperature);
             }
             else if (quelleT == 3 && zielT == 2)
             {
-                result = KelvinToFahrenheit(temperature);
+                resultT = KelvinToFahrenheit(temperature);
             }
             else
             {
@@ -92,7 +92,7 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitName(quelleT)} entsprechen {result} Einheit {GetUnitName(zielT)}");
+            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitName(quelleT)} entsprechen {resultT} Einheit {GetUnitName(zielT)}");
         }
 
         static void ConvertMassUnits()
@@ -113,31 +113,31 @@ namespace UnitConverter
 
             Console.Write("Geben Sie den Massenwert ein: ");
             double mass = double.Parse(Console.ReadLine());
-            double result = 0;
+            double resultM = 0;
 
             if (quelleM == 1 && zielM == 2)
             {
-                result = TonToKilogram(mass);
+                resultM = TonToKilogram(mass);
             }
             else if (quelleM == 2 && zielM == 1)
             {
-                result = KilogramToTon(mass);
+                resultM = KilogramToTon(mass);
             }
             else if (quelleM == 1 && zielM == 3)
             {
-                result = TonToGram(mass);
+                resultM = TonToGram(mass);
             }
             else if (quelleM == 3 && zielM == 1)
             {
-                result = GramToTon(mass);
+                resultM = GramToTon(mass);
             }
             else if (quelleM == 2 && zielM == 3)
             {
-                result = KilogramToGram(mass);
+                resultM = KilogramToGram(mass);
             }
             else if (quelleM == 3 && zielM == 2)
             {
-                result = GramToKilogram(mass);
+                resultM = GramToKilogram(mass);
             }
             else
             {
@@ -145,7 +145,7 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitName(quelleM)} entsprechen {result} Einheit {GetUnitName(zielM)}");
+            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitName(quelleM)} entsprechen {resultM} Einheit {GetUnitName(zielM)}");
         }
 
         static void ConvertWeightUnits()
@@ -164,18 +164,18 @@ namespace UnitConverter
 
             Console.Write("Geben Sie den Gewichtswert ein: ");
             double gewicht = double.Parse(Console.ReadLine());
-            double result = 0;
+            double resultG = 0;
 
             if (quelleG == 1 && zielG == 2)
             {
-                result = PoundsToKilograms(gewicht);
+                resultG = PoundsToKilograms(gewicht);
             }
             else if (quelleG == 2 && zielG == 1)
             {
-                result = KilogramsToPounds(gewicht);
+                resultG = KilogramsToPounds(gewicht);
             }
           
-            Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitName(quelleG)} entsprechen {result} Einheit {GetUnitName(zielG)}");
+            Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitName(quelleG)} entsprechen {resultG} Einheit {GetUnitName(zielG)}");
         }
 
         static string GetUnitName(int unit)
