@@ -97,45 +97,45 @@ namespace UnitConverter
 
         static void ConvertMassUnits()
         {
-            Console.WriteLine("\nBitte wählen Sie die Ausgangseinheit der Masse:");
+            Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Masse:");
             Console.WriteLine("1. Ton");
             Console.WriteLine("2. Kilogramm");
             Console.WriteLine("3. Gramm");
 
-            int sourceUnit = int.Parse(Console.ReadLine());
+            int quelleM = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Masse:");
             Console.WriteLine("1. Ton");
             Console.WriteLine("2. Kilogramm");
             Console.WriteLine("3. Gramm");
 
-            int targetUnit = int.Parse(Console.ReadLine());
+            int zielM = int.Parse(Console.ReadLine());
 
             Console.Write("Geben Sie den Massenwert ein: ");
             double mass = double.Parse(Console.ReadLine());
             double result = 0;
 
-            if (sourceUnit == 1 && targetUnit == 2)
+            if (quelleM == 1 && zielM == 2)
             {
                 result = TonToKilogram(mass);
             }
-            else if (sourceUnit == 2 && targetUnit == 1)
+            else if (quelleM == 2 && zielM == 1)
             {
                 result = KilogramToTon(mass);
             }
-            else if (sourceUnit == 1 && targetUnit == 3)
+            else if (quelleM == 1 && zielM == 3)
             {
                 result = TonToGram(mass);
             }
-            else if (sourceUnit == 3 && targetUnit == 1)
+            else if (quelleM == 3 && zielM == 1)
             {
                 result = GramToTon(mass);
             }
-            else if (sourceUnit == 2 && targetUnit == 3)
+            else if (quelleM == 2 && zielM == 3)
             {
                 result = KilogramToGram(mass);
             }
-            else if (sourceUnit == 3 && targetUnit == 2)
+            else if (quelleM == 3 && zielM == 2)
             {
                 result = GramToKilogram(mass);
             }
@@ -145,40 +145,37 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitName(sourceUnit)} entsprechen {result} Einheit {GetUnitName(targetUnit)}");
+            Console.WriteLine($"Ergebnis: {mass} Einheit {GetUnitName(quelleM)} entsprechen {result} Einheit {GetUnitName(zielM)}");
         }
 
         static void ConvertWeightUnits()
         {
-            Console.WriteLine("\nBitte wählen Sie die Ausgangseinheit der Gewichtseinheit:");
+            Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Gewichtseinheit:");
             Console.WriteLine("1. Pfund");
             Console.WriteLine("2. Kilogramm");
-            // Add more weight units as needed
-
-            int sourceUnit = int.Parse(Console.ReadLine());
+  
+            int quelleG = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Gewichtseinheit:");
             Console.WriteLine("1. Pfund");
             Console.WriteLine("2. Kilogramm");
-            // Add more weight units as needed
 
-            int targetUnit = int.Parse(Console.ReadLine());
+            int zielG = int.Parse(Console.ReadLine());
 
             Console.Write("Geben Sie den Gewichtswert ein: ");
-            double weight = double.Parse(Console.ReadLine());
+            double gewicht = double.Parse(Console.ReadLine());
             double result = 0;
 
-            if (sourceUnit == 1 && targetUnit == 2)
+            if (quelleG == 1 && zielG == 2)
             {
-                result = PoundsToKilograms(weight);
+                result = PoundsToKilograms(gewicht);
             }
-            else if (sourceUnit == 2 && targetUnit == 1)
+            else if (quelleG == 2 && zielG == 1)
             {
-                result = KilogramsToPounds(weight);
+                result = KilogramsToPounds(gewicht);
             }
-            // Add more weight unit conversions as needed
-
-            Console.WriteLine($"Ergebnis: {weight} Einheit {GetUnitName(sourceUnit)} entsprechen {result} Einheit {GetUnitName(targetUnit)}");
+          
+            Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitName(quelleG)} entsprechen {result} Einheit {GetUnitName(zielG)}");
         }
 
         static string GetUnitName(int unit)
@@ -199,7 +196,6 @@ namespace UnitConverter
                     return "Kelvin";
                 case 7:
                     return "Pfund";
-                // Add more unit names as needed
                 default:
                     return "Unbekannt";
             }
@@ -276,6 +272,3 @@ namespace UnitConverter
         }
     }
 }
-
-
-//The Code work but it shows some errors in Gewicht einheit result . 
