@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.CodeDom;
+using System.Diagnostics.Eventing.Reader;
 
 namespace UnitConverter
 {
@@ -16,24 +18,54 @@ namespace UnitConverter
                 Console.WriteLine("3. Gewichtseinheiten umrechnen");
                 Console.WriteLine("4. Beenden");
 
-                int choice = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int choice))
+                {
+                    Console.WriteLine("Ungültige Eingabe. geben Sie eine gültige Zahl ein.");
+                    continue; // Continue the loop to ask for input again.
+                }
 
                 if (choice == 4)
                 {
                     Console.WriteLine("Vielen Dank.... Auf Wiedersehen ");
                     break;
+                    
                 }
+                /*else if (choice == 5)
+                {
+                    Console.WriteLine("Charachter sind nicht erlaubt");
+                }*/
 
                 switch (choice)
                 {
                     case 1:
-                        ConvertTemperature();
+                        try
+                        {
+                            ConvertTemperature();
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Ungültige Eingabe für die Temperatur. Geben Sie eine gültige Zahl ein.");
+                        }
                         break;
                     case 2:
-                        ConvertMassUnits();
+                        try
+                        {
+                            ConvertMassUnits();
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Ungültige Eingabe für die Masse. Geben Sie eine gültige Zahl ein.");
+                        }
                         break;
                     case 3:
-                        ConvertWeightUnits();
+                        try
+                        {
+                            ConvertWeightUnits();
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Ungültige Eingabe für das Gewicht. Geben Sie eine gültige Zahl ein.");
+                        }
                         break;
                     default:
                         Console.WriteLine("Ungültige Auswahl. Bitte wählen Sie erneut.");
@@ -43,12 +75,14 @@ namespace UnitConverter
         }
 
         static void ConvertTemperature()
-        {
+            
+        { 
+
             Console.WriteLine("\nBitte wählen Sie die Quelle-Einheit der Temperatur:");
             Console.WriteLine("1. Celsius");
             Console.WriteLine("2. Fahrenheit");
             Console.WriteLine("3. Kelvin");
-
+            
             int quelleT = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Temperatur:");
@@ -61,6 +95,7 @@ namespace UnitConverter
             Console.Write("Geben Sie den Temperaturwert ein: ");
             double temperature = double.Parse(Console.ReadLine());
             double resultT = 0;
+
 
             if (quelleT == 1 && zielT == 2)
             {
@@ -92,7 +127,23 @@ namespace UnitConverter
                 return;
             }
 
-            Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitNameT(quelleT)} entsprechen {resultT} Einheit {GetUnitNameT(zielT)}");
+            bool printResult = false;
+            // if kelvin
+            if (quelleT == 3 && zielT == 1)
+            {
+                if (resultT != -1)
+                {
+                    printResult = true;
+                }
+            }else
+            {
+                printResult = true;
+            }
+
+            if (printResult)
+            {
+                Console.WriteLine($"Ergebnis: {temperature} Einheit {GetUnitNameT(quelleT)} entsprechen {resultT} Einheit {GetUnitNameT(zielT)}");
+            }
         }
 
         static void ConvertMassUnits()
@@ -154,7 +205,7 @@ namespace UnitConverter
             Console.WriteLine("1. Ton");
             Console.WriteLine("2. Kilogramm");
             Console.WriteLine("3. Gramm");
-  
+
             int quelleG = int.Parse(Console.ReadLine());
 
             Console.WriteLine("\nBitte wählen Sie die Ziel-Einheit der Gewichtseinheit:");
@@ -197,7 +248,7 @@ namespace UnitConverter
                 Console.WriteLine("Ungültige Auswahl der Einheiten.");
                 return;
             }
-          
+
             Console.WriteLine($"Ergebnis: {gewicht} Einheit {GetUnitNameG(quelleG)} entsprechen {resultG} Einheit {GetUnitNameG(zielG)}");
         }
 
@@ -211,12 +262,12 @@ namespace UnitConverter
                     return "Fahrenheit";
                 case 3:
                     return "Kelvin";
-                
+
                 default:
                     return "Unbekannt";
             }
         }
-        static string GetUnitNameM(int unit) 
+        static string GetUnitNameM(int unit)
         {
             switch (unit)
             {
@@ -226,7 +277,7 @@ namespace UnitConverter
                     return "Meter";
                 case 3:
                     return "Zentimeter";
-                
+
                 default:
                     return "Unbekannt";
             }
@@ -236,12 +287,12 @@ namespace UnitConverter
             switch (unit)
             {
                 case 1:
-                    return "Ton";
+                    return "Tonne";
                 case 2:
-                    return "Kilogram";
+                    return "Kilogramm";
                 case 3:
-                    return "Gram";
-                
+                    return "Gramm";
+
                 default:
                     return "Unbekannt";
             }
@@ -264,6 +315,11 @@ namespace UnitConverter
 
         static double KelvinToCelsius(double kelvin)
         {
+            if (kelvin < 0)
+            {
+                Console.WriteLine("Ungültiger Wert für kelvin. Der Wert muss größer oder gleich 0 sein.");
+                return -1;
+            }
             return kelvin - 273.15;
         }
 
