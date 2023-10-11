@@ -30,11 +30,7 @@ namespace UnitConverter
                     break;
                     
                 }
-                /*else if (choice == 5)
-                {
-                    Console.WriteLine("Charachter sind nicht erlaubt");
-                }*/
-
+                
                 switch (choice)
                 {
                     case 1:
